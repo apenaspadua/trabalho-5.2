@@ -1,18 +1,22 @@
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:11'
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'javac OlaUnicamp.java'
+                script {
+                    docker.image('openjdk:11').inside {
+                        sh 'javac OlaUnicamp.java'
+                    }
+                }
             }
         }
         stage('Run') {
             steps {
-                sh 'java OlaUnicamp'
+                script {
+                    docker.image('openjdk:11').inside {
+                        sh 'java OlaUnicamp'
+                    }
+                }
             }
         }
     }
