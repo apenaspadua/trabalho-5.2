@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
@@ -10,6 +11,7 @@ pipeline {
                 }
             }
         }
+
         stage('Run') {
             steps {
                 script {
